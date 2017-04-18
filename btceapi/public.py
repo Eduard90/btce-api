@@ -152,6 +152,31 @@ def getTicker(pair, connection=None, info=None):
     return ticker
 
 
+def getTickers(pairs, connection=None, info=None):
+    """Retrieve the ticker for the given pair.  Returns a Ticker instance."""
+
+    tickers = dict()
+
+    # if info is not None:
+    #     info.validate_pair(pair)
+
+    if connection is None:
+        connection = common.BTCEConnection()
+
+    response = connection.makeJSONRequest("/api/3/ticker/{}".format('-'.join(pairs)))
+
+    if type(response) is not dict:
+        raise TypeError("The response is a %r, not a dict." % type(response))
+    elif u'error' in response:
+        print ("There is a error \"%s\" while obtaining ticker %s" % (response['error'], pairs))
+        tickers = None
+    else:
+        for pair in response:
+            ticker = Ticker(**response[pair])
+            tickers[pair] = ticker
+
+    return tickers
+
 def getDepth(pair, connection=None, info=None):
     """Retrieve the depth for the given pair.  Returns a tuple (asks, bids);
     each of these is a list of (price, volume) tuples."""

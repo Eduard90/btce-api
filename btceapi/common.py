@@ -35,7 +35,7 @@ class APIResponseError(Exception):
 decimal.getcontext().rounding = decimal.ROUND_DOWN
 quanta = [decimal.Decimal("1e-%d" % i) for i in range(16)]
 
-btce_domain = "btc-e.com"
+btce_domain = "btc-e.nz"
 
 
 def parseJSONResponse(response):
