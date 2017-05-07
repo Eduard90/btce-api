@@ -178,7 +178,7 @@ def getTickers(pairs, connection=None, info=None):
     return tickers
 
 
-def getDepth(pairs: dict, connection=None, info=None):
+def getDepths(pairs: dict, connection=None, info=None):
     """Retrieve the depth for the given pair.  Returns a tuple (asks, bids);
     each of these is a list of (price, volume) tuples."""
 
