@@ -177,6 +177,22 @@ def getTickers(pairs, connection=None, info=None):
 
     return tickers
 
+
+def getDepth(pairs: dict, connection=None, info=None):
+    """Retrieve the depth for the given pair.  Returns a tuple (asks, bids);
+    each of these is a list of (price, volume) tuples."""
+
+    if connection is None:
+        connection = common.BTCEConnection()
+
+    pair_str = '-'.join(pairs)
+    response = connection.makeJSONRequest("/api/3/depth/%s" % pair_str)
+    if type(response) is not dict:
+        raise TypeError("The response is not a dict.")
+
+    return response
+
+
 def getDepth(pair, connection=None, info=None):
     """Retrieve the depth for the given pair.  Returns a tuple (asks, bids);
     each of these is a list of (price, volume) tuples."""
