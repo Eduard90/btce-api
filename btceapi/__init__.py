@@ -5,7 +5,7 @@ from .common import formatCurrencyDigits, truncateAmountDigits, BTCEConnection, 
     InvalidTradeAmountException, APIResponseError
 
 from .keyhandler import AbstractKeyHandler, KeyHandler
-from .public import APIInfo, getDepth, getTicker, getTradeHistory, getTickers
+from .public import APIInfo, getDepth, getTicker, getTradeHistory, getTickers, getDepths
 from .trade import TradeAPI
 
 __version__ = "0.9.0"
